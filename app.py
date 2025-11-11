@@ -1,13 +1,5 @@
 import streamlit as st
-from database import (
-    criar_tabela,
-    adicionar_produto,
-    listar_produtos,
-    buscar_produto,
-    deletar_produto,
-    atualizar_estoque,
-    produtos_abaixo_minimo
-)
+from database import *
 
 # Inicializa banco
 criar_tabela()
@@ -109,3 +101,4 @@ elif opcao == "Alerta de Estoque Baixo":
             st.error(f"⚠️ {p[1]} — Estoque: {p[2]} | Mínimo: {p[3]} | Fornecedor: {p[4]}")
     else:
         st.success("✅ Todos os produtos estão com estoque adequado.")
+
