@@ -17,7 +17,7 @@ menu = [
 opcao = st.sidebar.selectbox("Menu", menu)
 
 # --- LISTAR PRODUTOS ---
-elif opcao == "Listar Produtos":
+if opcao == "Listar Produtos":
     st.subheader("Lista de produtos cadastrados")
     produtos = listar_produtos()
 
