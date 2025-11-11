@@ -5,7 +5,7 @@ from database import *
 criar_tabela()
 
 # Configuração da página
-st.set_page_config(page_title="Controle de Estoque", page_icon="🏷️", layout="centered")
+st.set_page_config(page_title="Controle de Vendas", page_icon="🏷️", layout="centered")
 st.title("🏷️ Sistema de Controle de Vendas")
 
 menu = [
