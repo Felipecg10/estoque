@@ -1,8 +1,4 @@
 import streamlit as st
-
-st.title("Tela de Gestao")
-
-import streamlit as st
 from database import *
 
 # Inicializa banco
