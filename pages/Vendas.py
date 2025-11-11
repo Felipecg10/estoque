@@ -9,10 +9,13 @@ st.set_page_config(page_title="Controle de Estoque", page_icon="📦", layout="c
 st.title("📦 Sistema de Controle de Estoque")
 
 menu = [
+    "Cadastrar Produto",
     "Listar Produtos",
     "Buscar Produto",
     "Entrada de Estoque",
     "Saída de Estoque",
+    "Excluir Produto",
+    "Alerta de Estoque Baixo"
 ]
 opcao = st.sidebar.selectbox("Menu", menu)
 
