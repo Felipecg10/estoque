@@ -5,8 +5,8 @@ from database import *
 criar_tabela()
 
 # Configuração da página
-st.set_page_config(page_title="Controle de Vendas", page_icon="🏷️", layout="centered")
-st.title("🏷️ Sistema de Controle de Vendas")
+st.set_page_config(page_title="Controle de Estoque", page_icon="📦", layout="centered")
+st.title("📦 Sistema de Controle de Estoque")
 
 menu = [
     "Listar Produtos",
@@ -16,8 +16,23 @@ menu = [
 ]
 opcao = st.sidebar.selectbox("Menu", menu)
 
+# --- CADASTRAR PRODUTO ---
+if opcao == "Cadastrar Produto":
+    st.subheader("Adicionar novo produto")
+    nome = st.text_input("Nome do produto")
+    quantidade_estoque = st.number_input("Quantidade em estoque", min_value=0, step=1)
+    quantidade_minima = st.number_input("Quantidade mínima em estoque", min_value=0, step=1)
+    fornecedor = st.text_input("Fornecedor")
+
+    if st.button("Salvar produto"):
+        if nome and fornecedor:
+            adicionar_produto(nome, quantidade_estoque, quantidade_minima, fornecedor)
+            st.success(f"Produto '{nome}' adicionado com sucesso!")
+        else:
+            st.warning("Preencha todos os campos obrigatórios.")
+
 # --- LISTAR PRODUTOS ---
-if opcao == "Listar Produtos":
+elif opcao == "Listar Produtos":
     st.subheader("Lista de produtos cadastrados")
     produtos = listar_produtos()
 
@@ -64,4 +79,22 @@ elif opcao == "Saída de Estoque":
             st.success("Saída registrada com sucesso!")
         else:
             st.error("Produto não encontrado.")
-          
+
+# --- EXCLUIR PRODUTO ---
+elif opcao == "Excluir Produto":
+    st.subheader("Excluir produto pelo ID")
+    id_produto = st.number_input("Informe o ID do produto", min_value=1, step=1)
+    if st.button("Excluir"):
+        deletar_produto(id_produto)
+        st.success(f"Produto com ID {id_produto} excluído com sucesso!")
+
+# --- ALERTA DE ESTOQUE BAIXO ---
+elif opcao == "Alerta de Estoque Baixo":
+    st.subheader("Produtos com estoque abaixo do mínimo")
+    abaixo = produtos_abaixo_minimo()
+
+    if abaixo:
+        for p in abaixo:
+            st.error(f"⚠️ {p[1]} — Estoque: {p[2]} | Mínimo: {p[3]} | Fornecedor: {p[4]}")
+    else:
+        st.success("✅ Todos os produtos estão com estoque adequado.")
