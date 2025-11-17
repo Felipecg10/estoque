@@ -1,2 +1,3 @@
-web: sh setup.sh && streamlit run gestao.py
+web: sh setup.sh && streamlit run app.py
+
 
